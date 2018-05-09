@@ -1,0 +1,29 @@
+{
+  "name": "riew",
+  "version": "1.0.0",
+  "description": "presentations broadcasting system",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode development",
+    "build": "rimraf ./dist | webpack --mode development",
+    "build-prod": "webpack --mode production"
+  },
+  "author": "Dmitry Ibragimov (didimoner)",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.1.0",
+    "rimraf": "^2.6.2",
+    "webpack": "^4.4.1",
+    "webpack-cli": "^2.0.13",
+    "webpack-dev-server": "^3.1.1"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "pdfjs-dist": "^2.0.489",
+    "socket.io-client": "^2.1.0"
+  }
+}
