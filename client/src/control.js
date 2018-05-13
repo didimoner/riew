@@ -25,9 +25,18 @@ const nextBtn = document.querySelector("#next");
 prevBtn.addEventListener('click', e => {
   onPrevPage();
   socket.emit(PAGE_NUMBER_MSG, getPageNumber());
-})
-
+});
 nextBtn.addEventListener('click', e => {
   onNextPage();
   socket.emit(PAGE_NUMBER_MSG, getPageNumber());
+});
+
+document.addEventListener('keydown', e => {
+  if (e.keyCode === 37) {
+    onPrevPage();
+    socket.emit(PAGE_NUMBER_MSG, getPageNumber());
+  } else if (e.keyCode === 39) {
+    onNextPage();
+    socket.emit(PAGE_NUMBER_MSG, getPageNumber());
+  }
 })
