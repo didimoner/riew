@@ -17,6 +17,13 @@ body {
   margin: 12px;
 }
 
+.counter-wrap {
+  display: block;
+  width: 100%;
+  position: fixed;
+  top: 12px;
+}
+
 #counter {
   border-radius: 10px;
   background-color: black;
@@ -24,11 +31,8 @@ body {
   opacity: .3;
   font-size: 16px;
   display: inline-block;
+  text-align: center;
   padding: 8px 18px;
-  position: fixed;
-  top: 12px;
-  left: 50%;
-  margin-left: -38px;
 }
 
 #prev {
@@ -41,8 +45,6 @@ body {
 
 button {
   outline: none;
-   /* Green */
-  border-radius: 2px;
   color: #bebebe;
   opacity: .2;
   padding: 15px 72px;

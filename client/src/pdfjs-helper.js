@@ -100,6 +100,11 @@ function renderPage(num) {
 pdfjs.getDocument(url + docName).promise.then(pdf => {
   console.log('Loaded!');
   pdfDocument = pdf;
+
+  if (pdfDocument.numPages < pageNumber) {
+    pageNumber = 1;
+  }
+
   renderPage(pageNumber);
 
 }, reason => console.error(reason));
