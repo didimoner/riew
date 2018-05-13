@@ -4,6 +4,7 @@ require('pdfjs-dist/build/pdf.worker.entry.js');
 pdfjs.GlobalWorkerOptions.workerSrc = './node_modules/pdfjs-dist/build/pdf.worker.entry.js';
 
 const canvas = document.querySelector('#pdf-canvas');
+const counter = document.querySelector('#counter');
 const context = canvas.getContext('2d');
 const url = '//localhost:3000/getSlides/';
 const docName = 'slides';
@@ -86,6 +87,7 @@ function renderPage(num) {
     renderTask.then(() => {
       console.log('Page rendered', pageNumber);
       pageRendering = false;
+      counter.textContent = pageNumber + ' / ' + pdfDocument.numPages;
       if (pageNumPending !== null) {
         renderPage(pageNumPending);
         pageNumPending = null;

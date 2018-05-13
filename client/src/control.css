@@ -11,9 +11,22 @@ body {
   min-width: 240px;
   width: 50%;
 
-  border: 2px solid #555555;
-  border-radius: 2px;
   margin: 12px;
+}
+
+#counter {
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+  opacity: .3;
+  font-size: 18px;
+  font-weight: bold;
+  display: inline-block;
+  padding: 8px 18px;
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  margin-left: -38px;
 }
 
 #prev {
