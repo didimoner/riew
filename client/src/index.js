@@ -1,5 +1,6 @@
 import io from 'socket.io-client';
-import {onNextPage, onPrevPage, getPageNumber, setPageNumber, queueRenderPage} from './pdfjs-helper';
+import {onNextPage, onPrevPage, getPageNumber, setPageNumber, queueRenderPage, setScale} from './pdfjs-helper';
+import './index.css';
 
 const socket = io('http://localhost:3000');
 
@@ -14,6 +15,7 @@ socket.on('connect', () => {
 socket.on(INIT_MSG, message => {
   console.log('Initial page number is ' + message);
   setPageNumber(+message);
+  setScale(3);  
 });
 
 socket.on(PAGE_NUMBER_MSG, message => {

@@ -6,13 +6,15 @@ pdfjs.GlobalWorkerOptions.workerSrc = './node_modules/pdfjs-dist/build/pdf.worke
 const canvas = document.querySelector('#pdf-canvas');
 const context = canvas.getContext('2d');
 const url = '//localhost:3000/getSlides/';
-const docName = 'slides'
+const docName = 'slides';
 
 let pdfDocument = null;
 let pageNumber = 1;
 let pageRendering = false;
 let pageNumPending = null;
 let scale = 1;
+let pageWidth = 0;
+let pageHeight = 0;
 
 
 export function setScale(scale_) {
@@ -67,8 +69,13 @@ function renderPage(num) {
     const viewport = page.getViewport(scale);
 
     // Prepare canvas using PDF page dimensions
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
+    pageWidth = viewport.width;
+    pageHeight = viewport.height;
+
+    canvas.width = pageWidth;
+    canvas.height = pageHeight;
+
+    resizeCanvas();
 
     // Render PDF page into canvas context
     const renderContext = {
@@ -94,3 +101,22 @@ pdfjs.getDocument(url + docName).promise.then(pdf => {
   renderPage(pageNumber);
 
 }, reason => console.error(reason));
+
+
+window.addEventListener("resize", resizeCanvas, false);
+
+function resizeCanvas() {
+    const w = window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth||document.body.offsetWidth||window.screen.availWidth;
+    const h = window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight||document.body.offsetHeight||window.screen.availHeight;
+    
+    const scaleRatio = pageWidth > pageHeight ? pageWidth / pageHeight : pageHeight / pageWidth;
+    const offset = 32;
+
+    if (pageHeight > pageWidth) {
+      canvas.style.height = (h - offset) + 'px';
+      canvas.style.width = (h - offset) / scaleRatio + 'px';
+    } else {
+      canvas.style.height = (w - offset) / scaleRatio + 'px';
+      canvas.style.width = (w - offset) + 'px';
+    }
+}

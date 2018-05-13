@@ -1,5 +1,6 @@
 import io from 'socket.io-client';
 import {onNextPage, onPrevPage, setPageNumber, getPageNumber, setScale} from './pdfjs-helper';
+import './control.css';
 
 const url = '//localhost:3000/pdf';
 const socket = io('http://localhost:3000');
@@ -15,7 +16,7 @@ socket.on('connect', () => {
 socket.on(INIT_MSG, message => {
   console.log('Page number is ' + message);
   setPageNumber(+message);
-  setScale(0.8);
+  setScale(3);
 });
 
 const prevBtn = document.querySelector("#prev");

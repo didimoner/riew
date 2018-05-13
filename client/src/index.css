@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  text-align: center;
+}
+
+#pdf-canvas {
+  min-width: 240px;
+  width: 100%;
+  height: auto;
+  margin: 12px;
+
+  border: 2px solid #555555;
+  border-radius: 2px;
+}

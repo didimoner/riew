@@ -1,0 +1,72 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  text-align: center;
+}
+
+#pdf-canvas {
+  min-width: 240px;
+  width: 50%;
+
+  border: 2px solid #555555;
+  border-radius: 2px;
+  margin: 12px;
+}
+
+#prev {
+  left: 0;
+}
+
+#next {
+  right: 0
+}
+
+button {
+  outline: none;
+   /* Green */
+  border-radius: 2px;
+  color: #bebebe;
+  opacity: .2;
+  padding: 15px 72px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 48px;
+  box-sizing: border-box;
+
+  position: fixed;
+  top: 0;
+  height: 100%;
+
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+button:hover {
+  opacity: .8;
+  cursor: pointer;
+}
+
+.green {
+  background-color: #4CAF50; /* Green */
+  border: 2px solid #4CAF50;   
+}
+
+.blue {
+  background-color: #008CBA; /* Blue */
+  border: 2px solid #008CBA;   
+}
+
+.gray {
+  background-color: #e7e7e7; 
+  color: black;
+  border: 2px solid #e7e7e7;
+}
+
+.black {
+  background-color: #555555;
+  border: 2px solid #555555;
+}
