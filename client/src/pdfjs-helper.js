@@ -1,7 +1,4 @@
 import pdfjs from 'pdfjs-dist';
-import { SSL_OP_NETSCAPE_CHALLENGE_BUG } from 'constants';
-require('pdfjs-dist/build/pdf.worker.entry.js');
-pdfjs.GlobalWorkerOptions.workerSrc = './node_modules/pdfjs-dist/build/pdf.worker.entry.js';
 
 const canvas = document.querySelector('#pdf-canvas');
 const counter = document.querySelector('#counter');
@@ -62,6 +59,39 @@ export function onNextPage() {
 }
 
 
+export function init() {
+  pdfjs.GlobalWorkerOptions.workerSrc = './node_modules/pdfjs-dist/build/pdf.worker.js';
+  pdfjs.getDocument(url + docName).promise.then(pdf => {
+    console.log('Loaded!');
+    pdfDocument = pdf;
+  
+    if (pdfDocument.numPages < pageNumber) {
+      pageNumber = 1;
+    }
+  
+    renderPage(pageNumber);
+  
+  }, reason => console.error(reason));
+}
+
+
+export function resizeCanvas() {
+    const w = window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth||document.body.offsetWidth||window.screen.availWidth;
+    const h = window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight||document.body.offsetHeight||window.screen.availHeight;
+    
+    const scaleRatio = pageWidth > pageHeight ? pageWidth / pageHeight : pageHeight / pageWidth;
+    const offset = 32;
+
+    if (pageHeight > pageWidth) {
+      canvas.style.height = (h - offset) + 'px';
+      canvas.style.width = (h - offset) / scaleRatio + 'px';
+    } else {
+      canvas.style.height = (w - offset) / scaleRatio + 'px';
+      canvas.style.width = (w - offset) + 'px';
+    }
+}
+
+
 function renderPage(num) {
   pageRendering = true;
   pageNumber = num;
@@ -94,36 +124,4 @@ function renderPage(num) {
       }
     });
   });
-}
-
-
-pdfjs.getDocument(url + docName).promise.then(pdf => {
-  console.log('Loaded!');
-  pdfDocument = pdf;
-
-  if (pdfDocument.numPages < pageNumber) {
-    pageNumber = 1;
-  }
-
-  renderPage(pageNumber);
-
-}, reason => console.error(reason));
-
-
-window.addEventListener("resize", resizeCanvas, false);
-
-function resizeCanvas() {
-    const w = window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth||document.body.offsetWidth||window.screen.availWidth;
-    const h = window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight||document.body.offsetHeight||window.screen.availHeight;
-    
-    const scaleRatio = pageWidth > pageHeight ? pageWidth / pageHeight : pageHeight / pageWidth;
-    const offset = 32;
-
-    if (pageHeight > pageWidth) {
-      canvas.style.height = (h - offset) + 'px';
-      canvas.style.width = (h - offset) / scaleRatio + 'px';
-    } else {
-      canvas.style.height = (w - offset) / scaleRatio + 'px';
-      canvas.style.width = (w - offset) + 'px';
-    }
 }

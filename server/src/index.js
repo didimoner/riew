@@ -7,6 +7,8 @@ const cors = require('cors');
 const CONNECTION_MSG = 'connect'
 const PAGE_NUMBER_MSG = 'page_number';
 const INIT_MSG = 'init';
+const PASSWORD_MSG = 'password'
+const password = 'test';
 
 let currentPageNumber = 1;
 
@@ -28,6 +30,10 @@ io.on(CONNECTION_MSG, socket => {
     currentPageNumber = message;
     socket.broadcast.emit(PAGE_NUMBER_MSG, currentPageNumber);
   });  
+
+  socket.on(PASSWORD_MSG, message => {
+    socket.emit(PASSWORD_MSG, password === message);
+  });
 });
 
 http.listen(3000, () => {
