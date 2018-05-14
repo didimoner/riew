@@ -59,4 +59,4 @@ document.addEventListener('keydown', e => {
     helper.onNextPage();
     socket.emit(PAGE_NUMBER_MSG, helper.getPageNumber());
   }
-})
+});

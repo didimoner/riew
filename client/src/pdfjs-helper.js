@@ -4,7 +4,7 @@ const canvas = document.querySelector('#pdf-canvas');
 const counter = document.querySelector('#counter');
 const context = canvas.getContext('2d');
 const url = '//localhost:3000/getSlides/';
-const docName = 'slides';
+const docName = 'default';
 
 let pdfDocument = null;
 let pageNumber = 1;
@@ -13,6 +13,8 @@ let pageNumPending = null;
 let scale = 1;
 let pageWidth = 0;
 let pageHeight = 0;
+
+window.addEventListener("resize", resizeCanvas, false);
 
 
 export function setScale(scale_) {
