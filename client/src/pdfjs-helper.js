@@ -3,7 +3,6 @@ import pdfjs from 'pdfjs-dist';
 const canvas = document.querySelector('#pdf-canvas');
 const counter = document.querySelector('#counter');
 const context = canvas.getContext('2d');
-const docName = 'slides';
 
 let pdfDocument = null;
 let pageNumber = 1;
@@ -60,9 +59,8 @@ export function onNextPage() {
 }
 
 
-export function init(ip) {
+export function init(ip, port, docName) {
   const path = '/getSlides/' + docName;
-  const port = '3000';
   const adress = `//${ip}:${port}${path}`;
 
   pdfjs.GlobalWorkerOptions.workerSrc = './node_modules/pdfjs-dist/build/pdf.worker.js';

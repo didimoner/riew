@@ -7,7 +7,7 @@ module.exports = {
     control: path.resolve(__dirname, "src") + '/control.js'
   },
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "../web-server/public"),
     filename: '[name].bundle.js'
   },
   module: {
@@ -16,7 +16,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
+          loader: 'babel-loader'
         }
       },
       {

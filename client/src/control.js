@@ -1,13 +1,15 @@
 import io from 'socket.io-client';
 import * as helper from './pdfjs-helper';
-import * as ipHelper from './ip-helper';
+import config from './config.json';
 
 import './control.css';
 
 const PAGE_NUMBER_MSG = 'page_number';
 const INIT_MSG = 'init';
 const PASSWORD_MSG = 'password'
-const ip = 'localhost';
+const ip = config.adress;
+const port = config.port;
+const docName = config.document;
 
 const storage = window.localStorage;
 
@@ -16,7 +18,6 @@ if (userPassword === null) {
   userPassword = prompt('Enter the password: ');
 }
 
-const port = 3000;
 const socket = io(ip + ':' + port);
 const url = `//${ip}:${port}/pdf`;
 
@@ -40,7 +41,7 @@ socket.on(INIT_MSG, message => {
   console.log('Page number is ' + message);
   helper.setPageNumber(+message);
   helper.setScale(3);
-  helper.init(ip);
+  helper.init(ip, port, docName);
 });
 
 
