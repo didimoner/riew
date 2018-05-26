@@ -4,9 +4,9 @@
   "description": "Reiw - Presentation Broadcast System",
   "main": "index.js",
   "scripts": {
-    "install": "npm --prefix client install && npm --prefix server install",
+    "init": "npm i && npm --prefix client install && npm --prefix server install",
     "build": "rimraf ./web-server/public && npm run --prefix client build-prod",
-    "prepare": "npm run install && npm run build",
+    "prep": "npm run init && npm run build",
     "client": "npm run --prefix web-server start",
     "server": "npm run --prefix server start"
   },
