@@ -7,15 +7,15 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-You will need latest version of Node with npm to build and run this app. After installiation, clone this repo and modify config.json in client\src folder.
+You will need the latest version of Node with npm to build and run this app. After installiation, clone this repo and modify config.json in client\src folder.
 
-* **adress** - ip-adress of machine that will run app;
+* **adress** - ip-adress of a machine that will run app;
 * **port** - server port;
-* **document** - name of the .pdf file that you want to broadcast. Place .pdf into server\shared.
+* **document** - name of a .pdf file that you want to broadcast. Place .pdf into server\shared.
 
 ### Installing
 
-Simply run these commands to install all packages and build apps:
+Simply run these commands to install all the packages and build apps:
 
 ```
 $ cd riew
@@ -29,6 +29,6 @@ $ npm run server
 $ npm run client
 ```
 
-To open app just run web-browser, type %app_ip_apdess%:8080 to open viewer, and /control.html to open clicker. 
+To open the app just run web-browser, type %app_ip_apdess%:8080 to open viewer, and /control.html to open clicker. 
 Default password for clicker app - *test*. 
 You can change it in server\src\index.js; change the value of *password* variable.
